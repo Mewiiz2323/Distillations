@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>นักสืบกลิ่นหอม | ห้องทดลองการกลั่นด้วยไอน้ำ ม.2</title>
+<style>
+:root{
+ --navy:#17365b;--blue:#2878c8;--cyan:#36b9c8;--teal:#1da58b;
+ --violet:#8065cf;--pink:#f07ca8;--orange:#f4a640;--yellow:#ffe08a;
+ --paper:#fff;--ink:#233c56;--muted:#647b91;--line:#dce8f1;
+ --bg:#f3f7ff;--shadow:0 12px 32px rgba(36,75,120,.10)
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Tahoma,"Noto Sans Thai",sans-serif;color:var(--ink);line-height:1.7;background:
+ radial-gradient(circle at 8% 12%,#e4f7ff 0,transparent 26%),
+ radial-gradient(circle at 92% 22%,#fce8f1 0,transparent 24%),var(--bg)}
+header{color:white;text-align:center;padding:38px 18px 34px;background:linear-gradient(120deg,#2458a6,#387fd0 48%,#28a99e);position:relative;overflow:hidden}
+header:before,header:after{content:"";position:absolute;border-radius:50%;background:#ffffff18}
+header:before{width:240px;height:240px;left:-70px;top:-130px}
+header:after{width:300px;height:300px;right:-100px;bottom:-220px}
+.hero{position:relative;z-index:1;max-width:900px;margin:auto}
+.eyebrow{display:inline-block;background:#ffffff25;border:1px solid #ffffff55;padding:4px 13px;border-radius:99px;font-size:.88rem}
+h1{font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.25;margin:12px 0 8px}
+header p{margin:0;color:#eefaff}
+main{max-width:1120px;margin:auto;padding:20px 16px 44px}
+section{background:var(--paper);border:1px solid #e6edf5;border-radius:22px;padding:clamp(17px,3vw,27px);margin:18px 0;box-shadow:var(--shadow)}
+h2{color:#245b9c;margin:0 0 12px;font-size:1.4rem}
+h3{color:#286d8d;margin:8px 0}
+p{margin:8px 0 13px}
+.lead{font-size:1.05rem}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{border-radius:99px;padding:5px 12px;font-size:.9rem;font-weight:bold;background:#e9f4ff;color:#2865a6}
+.tag:nth-child(2){background:#e5faf4;color:#13836c}.tag:nth-child(3){background:#fff1e1;color:#a96512}
+.objectives{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.objective{padding:14px;border-radius:15px;background:linear-gradient(145deg,#f1f8ff,#f8f4ff);border:1px solid #e5ecfb}
+.objective b{display:block;color:#285d9b;margin-bottom:4px}
+.knowledge{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.kcard{border-radius:16px;padding:16px;background:linear-gradient(135deg,#f2f9ff,#f8f5ff);border:1px solid #e5ebfa}
+.kcard:nth-child(2){background:linear-gradient(135deg,#eafaf7,#f4fffd)}
+.kcard:nth-child(3){background:linear-gradient(135deg,#fff7e9,#fffdf7)}
+.kcard:nth-child(4){background:linear-gradient(135deg,#fff0f5,#fff9fb)}
+.kcard b{color:#285d9b}
+.callout{padding:13px 16px;border-left:5px solid var(--orange);border-radius:12px;background:#fff8e8;margin:14px 0}
+.callout.blue{border-color:var(--cyan);background:#effbff}
+
+/* Controls Grid */
+.lab-controls-panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;padding:16px;background:#f3f8ff;border-radius:16px;margin:14px 0;border:1px solid #dce8f3}
+.control-group{display:flex;flex-direction:column;gap:5px}
+.control-group label{font-weight:bold;font-size:.93rem;color:#1d4e7d}
+select, input[type=range]{padding:8px 12px;border-radius:10px;border:1px solid #b8d3e8;background:#fff;font-family:inherit;font-size:.95rem}
+select:focus, input[type=range]:focus{outline:3px solid #ffc95b}
+input[type=range]{accent-color:var(--teal);cursor:pointer;padding:0}
+
+.btn-group{display:flex;gap:10px;align-items:center;margin-top:8px}
+button{border:0;border-radius:12px;padding:10px 17px;background:linear-gradient(120deg,#2878c8,#27a6ae);color:white;font-weight:bold;font-family:inherit;cursor:pointer;box-shadow:0 5px 12px #2878c82b;transition:all .2s ease}
+button:hover{filter:brightness(1.06);transform:translateY(-1px)}
+button.secondary{background:#eaf1fa;color:#2b5c8d;box-shadow:none}
+button:focus,select:focus,.draggable:focus,.dropzone:focus{outline:3px solid #ffc95b;outline-offset:2px}
+
+.labgrid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(240px,.75fr);gap:16px;align-items:stretch}
+.diagram-wrap{border-radius:18px;overflow:hidden;border:1px solid #dceaf3;background:linear-gradient(180deg,#e9f8ff,#f9fcff);position:relative}
+svg{display:block;width:100%;height:auto}
+.statuspanel{border-radius:18px;background:linear-gradient(155deg,#effbff,#f2f0ff);padding:17px;display:flex;flex-direction:column;justify-content:space-between}
+.stat{padding:8px 0;border-bottom:1px solid #dce8f1}
+.stat:last-of-type{border:0}
+.statlabel{font-size:.88rem;color:var(--muted)}
+.big{font-size:1.5rem;font-weight:bold;color:#187e94}
+#state{font-weight:bold;color:#7254b9}
+#observation{font-size:.92rem}
+.material-info{background:#fff;border-radius:12px;padding:10px 12px;border:1px solid #e1ebf5;margin-top:8px;font-size:.88rem}
+.material-info b{color:#2878c8;display:block}
+
+canvas{width:100%;height:230px;border:1px solid #dce8f1;border-radius:14px;background:#fff;display:block;margin-top:12px}
+.smallnote{font-size:.87rem;color:var(--muted)}
+
+/* Process Cards with Diagram Illustrations */
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.process article{padding:15px;border-radius:16px;background:#f2f8ff;border:1px solid #e2edf7;display:flex;flex-direction:column;justify-content:space-between}
+.process article:nth-child(2){background:#effbf8}.process article:nth-child(3){background:#fff8ed}.process article:nth-child(4){background:#fff1f6}
+.process-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#2e7ec1;color:#fff;font-weight:bold;font-size:.9rem;flex-shrink:0}
+.process article:nth-child(2) .num{background:#1da58b}.process article:nth-child(3) .num{background:#e49a32}.process article:nth-child(4) .num{background:#d76c9a}
+.process h3{margin:0;font-size:1.05rem}
+.process-svg{width:100%;height:110px;margin:8px 0;border-radius:12px;background:#fff;border:1px opacity border-color;box-shadow:inset 0 2px 6px rgba(0,0,0,0.03)}
+
+/* Game Styles */
+.gamehead{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.scorebadge{background:#fff2d7;color:#925c0c;padding:7px 14px;border-radius:99px;font-weight:bold;font-size:1rem}
+.instructions{background:#f1f8ff;border-radius:13px;padding:12px 15px;margin:12px 0;font-size:.95rem}
+.wordbank-wrap{margin:14px 0}
+.wordbank-label{font-weight:bold;color:#285d9b;margin-bottom:6px;display:block}
+.wordbank{display:flex;flex-wrap:wrap;gap:9px;padding:15px;background:linear-gradient(120deg,#f2f8ff,#f8f3ff);border:2px dashed #c7d8ed;border-radius:16px;min-height:90px}
+.draggable{padding:8px 13px;border-radius:11px;color:#fff;font-weight:bold;font-size:.9rem;cursor:grab;touch-action:pan-y;user-select:none;background:linear-gradient(120deg,#397ac4,#6b69c8);box-shadow:0 4px 9px #4a70b72b;border:0;transition:transform .15s ease}
+.draggable:hover{transform:scale(1.04)}
+.draggable:nth-child(3n+2){background:linear-gradient(120deg,#149b91,#3ab6a1)}
+.draggable:nth-child(3n){background:linear-gradient(120deg,#d77a46,#edaa52)}
+.draggable:active{cursor:grabbing}
+.draggable.used{opacity:.3;filter:grayscale(.8);pointer-events:none}
+.matchlist{display:grid;gap:10px;margin:16px 0}
+.matchitem{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(180px,1fr);gap:12px;align-items:center;padding:11px 14px;border-radius:14px;background:#fbfdff;border:1px solid #e5edf5}
+.matchitem p{margin:0;font-size:.94rem}
+.dropzone{min-height:46px;border:2px dashed #a9bfd5;border-radius:11px;background:#f4f8fc;padding:6px 10px;color:#75899b;text-align:center;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.92rem;transition:all .2s ease}
+.dropzone.over{background:#e4f7f4;border-color:#1da58b}
+.dropzone.filled{border-style:solid;border-color:#8ebcae;background:#edfaf4;color:#1d6e59;font-weight:bold}
+.dropzone.correct{border-color:#2aab78;background:#e5faef;color:#0b6b47}
+.dropzone.wrong{border-color:#e27a7a;background:#fff0f0;color:#a82828}
+.game-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.feedback{font-weight:bold;margin-top:13px;min-height:28px;font-size:1.05rem}
+.good{color:#087c55}.bad{color:#b04444}
+.answerbox{background:#fff8e8;border:1px solid #f6dfac;border-radius:14px;padding:14px;margin-top:12px;font-size:.93rem}
+.reflection li{margin:8px 0}
+footer{text-align:center;color:#6c8196;padding:10px 16px 28px}
+
+@media(max-width:900px){.process{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.labgrid{grid-template-columns:1fr}.objectives{grid-template-columns:1fr}}
+@media(max-width:540px){.knowledge{grid-template-columns:1fr}.matchitem{grid-template-columns:1fr}.process{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="hero">
+ <span class="eyebrow">SCIENCE LAB · มัธยมศึกษาปีที่ 2</span>
+ <h1>🧪 นักสืบกลิ่นหอม<br>การกลั่นด้วยไอน้ำ (Steam Distillation)</h1>
+ <p>เลือกวัตถุดิบ ปรับปริมาณสาร และเรียนรู้กระบวนการสกัดน้ำมันหอมระเหยเสมือนจริง</p>
+</div></header>
+<main>
+<section>
+ <h2>🎯 ภารกิจการเรียนรู้</h2>
+ <p class="lead">วันนี้เราจะสืบค้นว่าไอน้ำช่วยพาสารหอมออกจากพืชชนิดต่างๆ ได้อย่างไร และปริมาณวัตถุดิบส่งผลต่อปริมาณน้ำมันหอมระเหยที่สกัดได้มากน้อยเพียงใด</p>
+ <div class="objectives">
+  <div class="objective"><b>🔍 ทดลองเลือกสารและสังเกต</b>ทดลองเปลี่ยนวัตถุดิบและปริมาณ เพื่อดูการสกัดสารหอมและชั้นน้ำมัน</div>
+  <div class="objective"><b>🧠 วิเคราะห์ปริมาณและสาร</b>เปรียบเทียบการเปลี่ยนสถานะ สี และปริมาณสารกลั่นที่เก็บได้</div>
+  <div class="objective"><b>📝 อธิบายกระบวนการ 4 ขั้นตอน</b>เข้าใจหน้าที่ของอุปกรณ์พร้อมภาพประกอบขั้นตอนชัดเจน</div>
+ </div>
+ <div class="tagrow"><span class="tag">การแยกสาร</span><span class="tag">การเปลี่ยนสถานะ</span><span class="tag">น้ำมันหอมระเหย</span></div>
+</section>
+
+<section>
+ <h2>📚 เกร็ดความรู้ก่อนเข้าห้องทดลอง</h2>
+ <p><b>การกลั่นด้วยไอน้ำ (Steam Distillation)</b> เป็นวิธีการแยกสารที่ไม่ละลายน้ำและระเหยได้ง่ายออกจากวัตถุดิบพืช โดยอาศัยความดันไอน้ำพาสารออกมาที่อุณหภูมิต่ำกว่าจุดเดือดปกติของสารนั้น จึงช่วยป้องกันไม่ให้สารหอมสลายตัวจากความร้อนสูง</p>
+ <div class="knowledge">
+  <article class="kcard"><h3>💡 หลักการไอน้ำพาสาร</h3><p>เมื่อไอน้ำร้อนผ่านวัตถุดิบ ความร้อนจะทำให้ถุงเก็บน้ำมันในพืชแตกออก ไอของน้ำมันหอมระเหยจะระเหยออกมาพร้อมกับไอน้ำโดยไม่ต้องใช้อุณหภูมิสูงมาก</p></article>
+  <article class="kcard"><h3>🌿 ตัวละลาย/วัตถุดิบพืช</h3><p>พืชแต่ละชนิดมีสารสำคัญต่างกัน เช่น ตะไคร้หอม (Citronellal), ผิวมะกรูด (Limonene), ลาเวนเดอร์ (Linalool) ซึ่งให้สี กลิ่น และปริมาณน้ำมันต่างกัน</p></article>
+  <article class="kcard"><h3>🧊 การควบแน่นด้วยความเย็น</h3><p>ไอผสมระหว่างน้ำและสารหอมจะถูกทำให้อยู่ในสถานะของเหลวอีกครั้งเมื่อผ่าน <b>เครื่องควบแน่น (Condenser)</b> ที่มีน้ำหล่อเย็นไหลผ่านตลอดเวลา</p></article>
+  <article class="kcard"><h3>🫙 การแยกชั้นของสารกลั่น</h3><p>สารกลั่นที่เก็บได้จะแยกเป็น 2 ชั้น โดยน้ำมันหอมระเหยจะลอยอยู่ชั้นบน (เนื่องจากความหนาแน่นน้อยกว่าน้ำและไม่ละลายน้ำ) ส่วนน้ำเกสร/ hydrosol จะอยู่ชั้นล่าง</p></article>
+ </div>
+ <div class="callout"><b>จำให้แม่น:</b> การกลั่นด้วยไอน้ำใช้แยกสารที่ <b>ระเหยได้ง่าย + ไม่ละลายน้ำ</b> ออกจากวัตถุดิบ โดยของเหลวที่เก็บได้จะแยกชั้นกันอย่างชัดเจน</div>
+</section>
+
+<section>
+ <h2>🔬 ห้องทดลองเสมือนจริง (Virtual Steam Distillation Lab)</h2>
+ <p>เลือกชนิดวัตถุดิบ ปริมาณพืช และระดับความร้อน แล้วกดเริ่มการจำลองเพื่อติดตามการเปลี่ยนสถานะและสังเกตปริมาณสารกลั่น</p>
+ 
+ <!-- Interactive Control Panel -->
+ <div class="lab-controls-panel">
+  <div class="control-group">
+   <label for="materialSelect">🌿 ชนิดวัตถุดิบ (ตัวละลาย 100 ชนิด):</label>
+   <select id="materialSelect">
+    <optgroup label="🌱 1. สมุนไพรไทย & เครื่องเทศ (Spices & Herbs)">
+     <option value="citronella" selected>ตะไคร้หอม (Citronella Grass)</option>
+     <option value="lemongrass">ตะไคร้บ้าน (Lemongrass)</option>
+     <option value="ginger">ขิง (Ginger Root)</option>
+     <option value="galangal">ข่า (Galangal Rhizome)</option>
+     <option value="turmeric">ขมิ้นชัน (Turmeric Rhizome)</option>
+     <option value="fingerroot">กระชาย (Fingerroot)</option>
+     <option value="cardamom">กระวาน (Cardamom Seed)</option>
+     <option value="clove">กานพลู (Clove Bud)</option>
+     <option value="nutmeg">จันทน์เทศ (Nutmeg Seed)</option>
+     <option value="cinnamon">อบเชย (Cinnamon Bark)</option>
+     <option value="black_pepper">พริกไทยดำ (Black Pepper)</option>
+     <option value="coriander_seed">ลูกผักชี (Coriander Seed)</option>
+     <option value="cumin">ยี่หร่า (Cumin Seed)</option>
+     <option value="fennel">เทียนข้าวเปลือก (Fennel Seed)</option>
+     <option value="anise">เทียนสัตตบุษย์ (Anise Seed)</option>
+     <option value="star_anise">โป๊ยกั๊ก (Star Anise)</option>
+     <option value="holy_basil">กระเพรา (Holy Basil)</option>
+     <option value="sweet_basil">โหระพา (Sweet Basil)</option>
+     <option value="hairy_basil">แมงลัก (Hairy Basil)</option>
+     <option value="plai">ไพล (Plai Rhizome)</option>
+    </optgroup>
+    
+    <optgroup label="🌸 2. ดอกไม้หอม (Aromatic Flowers)">
+     <option value="lavender">ดอกลาเวนเดอร์ (Lavender)</option>
+     <option value="rose">กลีบกุหลาบ (Damask Rose)</option>
+     <option value="jasmine">ดอกมะลิ (Jasmine)</option>
+     <option value="ylang_ylang">ดอกกระดังงา (Ylang Ylang)</option>
+     <option value="champaca">ดอกจำปา (Champaca)</option>
+     <option value="white_champaca">ดอกจำปี (White Champaca)</option>
+     <option value="ylang_ylang_thai">ดอกสายหยุด (Desmos Flower)</option>
+     <option value="night_jasmine">ดอกกรรณิการ์ (Night Jasmine)</option>
+     <option value="orange_blossom">ดอกส้ม (Neroli / Orange Blossom)</option>
+     <option value="chamomile">ดอกคาโมมายล์ (Chamomile)</option>
+     <option value="clary_sage_flower">ดอกเคลรีเสจ (Clary Sage)</option>
+     <option value="lotus">กลีบบัวหลวง (Nelumbo Lotus)</option>
+     <option value="millingtonia">ดอกปีบ (Cork Tree Flower)</option>
+     <option value="bullet_wood">ดอกพิกุล (Spanish Cherry)</option>
+     <option value="screw_pine_flower">ดอกเตยหอม / ดอกลำเจียก (Pandanus Flower)</option>
+     <option value="geranium_flower">ดอกเจอเรเนียม (Geranium Flower)</option>
+     <option value="osmanthus">ดอกหอมหมื่นลี่ (Sweet Osmanthus)</option>
+     <option value="frangipani">ดอกลีลาวดี (Frangipani)</option>
+     <option value="tuberose">ดอกซ่อนกลิ่น (Tuberose)</option>
+     <option value="gardenia">ดอกพุดซ้อน (Gardenia)</option>
+    </optgroup>
+
+    <optgroup label="🍋 3. พืชตระกูลส้ม & มะนาว (Citrus Peels)">
+     <option value="bergamot">ผิวมะกรูด (Kaffir Lime Peel)</option>
+     <option value="lime">ผิวมะนาว (Lime Peel)</option>
+     <option value="sweet_orange">ผิวส้มเกลี้ยง (Sweet Orange Peel)</option>
+     <option value="mandarin">ผิวส้มเขียวหวาน (Mandarin Peel)</option>
+     <option value="lemon">ผิวมะนาวเหลือง (Lemon Peel)</option>
+     <option value="grapefruit">ผิวเกรปฟรุต (Grapefruit Peel)</option>
+     <option value="bitter_orange">ผิวส้มซ่า (Bitter Orange Peel)</option>
+     <option value="pomelo">ผิวส้มโอ (Pomelo Peel)</option>
+     <option value="yuzu">ผิวส้มยูสุ (Yuzu Peel)</option>
+     <option value="tangerine">ผิวส้มตรังกานู/ส้มสายน้ำผึ้ง (Tangerine Peel)</option>
+     <option value="kumquat">ผิวส้มกิ๊ด (Kumquat Peel)</option>
+     <option value="citron">ผิวส้มมือ (Buddha's Hand Citron)</option>
+     <option value="petitgrain">ใบส้มซ่า (Petitgrain Leaves)</option>
+     <option value="kaffir_leaf">ใบลอยมะกรูด (Kaffir Lime Leaf)</option>
+     <option value="calamansi">จี๊ด / ส้มจี๊ด (Calamansi Peel)</option>
+    </optgroup>
+
+    <optgroup label="🍃 4. พืชใบหอม & ไม้พุ่ม (Aromatic Leaves & Shrubs)">
+     <option value="eucalyptus">ใบยูคาลิปตัส (Eucalyptus Leaf)</option>
+     <option value="peppermint">ใบเปปเปอร์มินต์ (Peppermint Leaf)</option>
+     <option value="spearmint">ใบสเปียร์มินต์ (Spearmint Leaf)</option>
+     <option value="rosemary">ใบโรสแมรี่ (Rosemary Leaf)</option>
+     <option value="thyme">ใบไทม์ (Thyme Leaf)</option>
+     <option value="sage">ใบเซจ (Sage Leaf)</option>
+     <option value="oregano">ใบออริกาโน (Oregano Leaf)</option>
+     <option value="tea_tree">ใบทีทรี (Tea Tree Leaf)</option>
+     <option value="patchouli">ใบพิมเสน / ใบแพตชูลี (Patchouli Leaf)</option>
+     <option value="pandan">ใบเตยหอม (Pandan Leaf)</option>
+     <option value="lemon_balm">ใบเลมอนบาล์ม (Lemon Balm Leaf)</option>
+     <option value="lemon_verbena">ใบเลมอนเวอบีน่า (Lemon Verbena)</option>
+     <option value="marjoram">ใบมาร์จอแรม (Marjoram Leaf)</option>
+     <option value="wintergreen">ใบวินเทอร์กรีน (Wintergreen Leaf)</option>
+     <option value="bay_leaf">ใบกระวาน / ใบเบย์ (Bay Laurel Leaf)</option>
+     <option value="citronella_leaf">ใบตะไคร้หอมสด (Citronella Leaf)</option>
+     <option value="cajuput">ใบเสม็ดขาว (Cajuput Leaf)</option>
+     <option value="niaouli">ใบเสม็ดแดง / นิโออูลี (Niaouli Leaf)</option>
+     <option value="myrtle">ใบเมอร์เทิล (Myrtle Leaf)</option>
+     <option value="mugwort">ใบโกฐจุฬาลัมพา (Mugwort Leaf)</option>
+     <option value="savory">ใบซาวอรี่ (Savory Leaf)</option>
+     <option value="tarragon">ใบทาร์รากอน (Tarragon Leaf)</option>
+     <option value="pine_needle">ใบสนเข็ม (Pine Needle)</option>
+     <option value="fir_needle">ใบสนเฟอร์ (Fir Needle)</option>
+     <option value="spruce">ใบสนสปรูซ (Spruce Needle)</option>
+    </optgroup>
+
+    <optgroup label="🌲 5. เนื้อไม้, เปลือกไม้ & ยางไม้ (Woods, Barks & Resins)">
+     <option value="sandalwood">ไม้จันทน์หอม (Sandalwood)</option>
+     <option value="cedarwood">ไม้ซีดาร์ (Cedarwood)</option>
+     <option value="agarwood">ไม้กฤษณา (Agarwood / Oud)</option>
+     <option value="rosewood">ไม้พะยูงหอม / โรสวูด (Rosewood)</option>
+     <option value="frankincense">ยางกำยานบอสเวลเลีย (Frankincense Resin)</option>
+     <option value="myrrh">ยางมดยอบ (Myrrh Resin)</option>
+     <option value="vetiver">หญ้าแฝก / รากแฝกหอม (Vetiver Root)</option>
+     <option value="camphor">เกล็ดการบูร / ไม้การบูร (Camphor Wood)</option>
+     <option value="juniper_berry">ผลจูนิเปอร์ (Juniper Berry)</option>
+     <option value="cypress">ไม้ไซเปรส (Cypress Wood)</option>
+     <option value="sassafras">เปลือกไม้ซาสซาแฟรส (Sassafras Bark)</option>
+     <option value="benzoin">ยางกำยานไทย (Benzoin Resin)</option>
+     <option value="copal">ยางโคปอล (Copal Resin)</option>
+     <option value="oakmoss">มอสต้นโอ๊ก (Oakmoss)</option>
+     <option value="valerian">รากก้านโชว์ / วาเลอเรียน (Valerian Root)</option>
+     <option value="angelica">รากตังกุย / แองเจลิกา (Angelica Root)</option>
+     <option value="birch_tar">เปลือกไม้เบิร์ช (Birch Bark)</option>
+     <option value="ho_wood">ไม้โฮวูด (Ho Wood)</option>
+     <option value="palo_santo">ไม้ปาโล ซานโต (Palo Santo Wood)</option>
+     <option value="hinoki">ไม้ฮิโนกิ / สนฮิโนกิ (Hinoki Cypress Wood)</option>
+    </optgroup>
+   </select>
+  </div>
+
+  <div class="control-group">
+   <label for="massInput">⚖️ ปริมาณวัตถุดิบ: <span id="massVal">150</span> กรัม</label>
+   <input id="massInput" type="range" min="50" max="300" step="10" value="150">
+  </div>
+
+  <div class="control-group">
+   <label for="heat">🔥 ระดับความร้อน: <span id="heatVal">50</span>%</label>
+   <input id="heat" type="range" min="0" max="100" value="50">
+  </div>
+
+  <div class="control-group btn-group">
+   <button id="toggle">▶ เริ่มการจำลอง</button>
+   <button class="secondary" id="reset">↺ เริ่มใหม่</button>
+  </div>
+ </div>
+
+ <div class="labgrid">
+  <!-- Interactive SVG Lab Diagram -->
+  <div class="diagram-wrap">
+   <svg viewBox="0 0 900 510" role="img" aria-label="ชุดอุปกรณ์การกลั่นด้วยไอน้ำเสมือนจริง">
+    <defs>
+     <!-- Glassware Realism Gradients -->
+     <linearGradient id="glassBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="18%" stop-color="#cfedf8" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="82%" stop-color="#b6e4f5" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#77b6d1" stop-opacity="0.75"/>
+     </linearGradient>
+     
+     <linearGradient id="glassReflection" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+     </linearGradient>
+
+     <linearGradient id="waterGrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#a4f0ff" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#2d9bc9" stop-opacity="0.9"/>
+     </linearGradient>
+
+     <!-- Realistic Animated Flame Gradients -->
+     <radialGradient id="flameInner" cx="50%" cy="80%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#42daff"/>
+      <stop offset="100%" stop-color="#0264d8" stop-opacity="0.8"/>
+     </radialGradient>
+     
+     <linearGradient id="flameOuter" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#ff3600" stop-opacity="0.95"/>
+      <stop offset="45%" stop-color="#ffaa00" stop-opacity="0.9"/>
+      <stop offset="85%" stop-color="#ffee55" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+     </linearGradient>
+
+     <!-- Drop Shadows -->
+     <filter id="glassShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="3" dy="8" stdDeviation="5" flood-color="#14344e" flood-opacity="0.15"/>
+     </filter>
+     <filter id="flameGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+     </filter>
+    </defs>
+
+    <style>
+     @keyframes realisticFlame {
+      0% { transform: scaleY(1) scaleX(1) rotate(0deg); }
+      25% { transform: scaleY(1.06) scaleX(0.96) rotate(1deg); }
+      50% { transform: scaleY(0.95) scaleX(1.03) rotate(-1deg); }
+      75% { transform: scaleY(1.08) scaleX(0.95) rotate(0.5deg); }
+      100% { transform: scaleY(1) scaleX(1) rotate(0deg); }
+     }
+     .fire-outer { transform-origin: 105px 440px; animation: realisticFlame 0.35s infinite alternate ease-in-out; }
+     .fire-inner { transform-origin: 105px 435px; animation: realisticFlame 0.25s infinite alternate ease-in-out; }
+    </style>
+
+    <rect x="0" y="0" width="900" height="510" fill="#f4fbff"/>
+    <path d="M20 440 H880" stroke="#c0d7e5" stroke-width="3"/>
+    
+    <!-- Metal Stands & Clamps -->
+    <path d="M105 440 V490 M230 440 V490 M480 300 V490 M700 440 V490" stroke="#71869e" stroke-width="8" stroke-linecap="round"/>
+    <path d="M60 440 H150 M185 440 H275 M645 440 H755" stroke="#485c73" stroke-width="6"/>
+
+    <!-- 1. Boiling Flask (Steam Generator) -->
+    <g filter="url(#glassShadow)">
+     <ellipse cx="105" cy="403" rx="65" ry="10" fill="#a4c2d4" opacity=".3"/>
+     <path d="M55 250 Q55 226 80 226 H130 Q155 226 155 250 L150 385 Q105 410 60 385Z" fill="url(#glassBody)" stroke="#3b697d" stroke-width="2.5"/>
+     <!-- Water inside -->
+     <path d="M62 330 Q105 320 148 330 L146 380 Q105 397 64 380Z" fill="url(#waterGrad)"/>
+     <ellipse cx="105" cy="330" rx="43" ry="8" fill="#cbf5ff" opacity=".8"/>
+     <!-- Realistic Glass Glare -->
+     <path d="M68 250 Q65 320 75 375" stroke="url(#glassReflection)" stroke-width="4" fill="none" stroke-linecap="round"/>
+     <!-- Glass Neck & Tube -->
+     <path d="M83 226 V200 H127 V226" fill="url(#glassBody)" stroke="#3b697d" stroke-width="2"/>
+     <path d="M105 200 V174 H220 V210" fill="none" stroke="#2c5a6e" stroke-width="8" stroke-linejoin="round"/>
+     <path d="M105 200 V174 H220 V210" fill="none" stroke="#e0f7fc" stroke-width="3"/>
+    </g>
+
+    <!-- REALISTIC BUNSEN BURNER FLAME -->
+    <g id="bunsenFlame">
+     <!-- Outer Flame -->
+     <path class="fire-outer" filter="url(#flameGlow)" d="M75 440 Q105 340 135 440 Q120 446 105 446 Q90 446 75 440Z" fill="url(#flameOuter)"/>
+     <!-- Inner Intense Cone -->
+     <path class="fire-inner" d="M92 440 Q105 385 118 440 Q112 443 105 443 Q98 443 92 440Z" fill="url(#flameInner)"/>
+     <!-- Burner Base -->
+     <rect x="93" y="440" width="24" height="25" fill="#4a5a6a" rx="2"/>
+     <rect x="85" y="465" width="40" height="8" fill="#2b3846" rx="3"/>
+    </g>
+
+    <!-- 2. Distillation Flask (Raw Material Container) -->
+    <g filter="url(#glassShadow)">
+     <path d="M210 205 H250 V238 L278 270 Q290 287 282 315 L267 374 Q260 394 240 394 H205 Q185 394 178 374 L163 315 Q155 287 169 270 L198 238 V205Z" fill="url(#glassBody)" stroke="#3b697d" stroke-width="2.5"/>
+     
+     <!-- Dynamic Realistic Plant Bed -->
+     <path id="plantBed" d="M171 315 Q220 303 278 315 L265 371 Q260 386 241 386 H205 Q188 386 183 371Z" fill="#b7e7d0" opacity=".9"/>
+     <g id="plantLeaves" fill="#2e8b57" stroke="#1b5e3a" stroke-width="1.5">
+      <path d="M193 337 Q180 309 204 303 Q222 309 208 338Z"/>
+      <path d="M225 344 Q223 311 250 315 Q262 331 232 350Z"/>
+      <path d="M210 368 Q202 340 228 338 Q244 351 218 373Z"/>
+     </g>
+     <!-- Glass Glare -->
+     <path d="M175 280 Q168 330 178 370" stroke="url(#glassReflection)" stroke-width="5" fill="none"/>
+
+     <path d="M205 205 V187 H250 V205" fill="url(#glassBody)" stroke="#3b697d" stroke-width="2"/>
+     <path d="M228 187 V156 H333 V174" fill="none" stroke="#2c5a6e" stroke-width="8" stroke-linejoin="round"/>
+     <path d="M228 187 V156 H333 V174" fill="none" stroke="#e0f7fc" stroke-width="3"/>
+    </g>
+
+    <!-- 3. Liebig Condenser (Realistic Glass Design) -->
+    <g filter="url(#glassShadow)">
+     <rect x="330" y="135" width="300" height="92" rx="42" fill="url(#glassBody)" stroke="#3b697d" stroke-width="3"/>
+     <!-- Cooling Water Inner Tube -->
+     <rect x="347" y="165" width="266" height="32" rx="15" fill="#ffffff" fill-opacity="0.3" stroke="#5294ad" stroke-width="1.5"/>
+     
+     <!-- Cooling Water Flow Effect -->
+     <path d="M348 146 Q380 128 405 145 T460 145 T515 145 T570 145 T612 145" stroke="#3eaed8" stroke-width="6" fill="none" opacity=".6"/>
+     <path d="M348 216 Q380 234 405 216 T460 216 T515 216 T570 216 T612 216" stroke="#3eaed8" stroke-width="6" fill="none" opacity=".6"/>
+     
+     <!-- Cooling Ports -->
+     <path d="M590 227 V265 H635" stroke="#2984b0" stroke-width="9" fill="none" stroke-linecap="round"/>
+     <path d="M370 135 V98 H415" stroke="#2984b0" stroke-width="9" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Vapor Path & Condensate Drops -->
+    <path d="M333 174 H620" stroke="#d9a23e" stroke-width="6" stroke-dasharray="10 8" fill="none" id="vapour"/>
+    <path d="M630 180 H700 V295" stroke="#2c5a6e" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M630 180 H700 V295" stroke="#e2b45a" stroke-width="3" fill="none" stroke-dasharray="6 8"/>
+
+    <!-- 4. Receiving Flask (Erlenmeyer Flask Glassware) -->
+    <g filter="url(#glassShadow)">
+     <path d="M670 296 H730 L724 406 Q700 424 676 406Z" fill="url(#glassBody)" stroke="#3b697d" stroke-width="2.5"/>
+     <!-- Hydrosol Water Layer (Bottom) -->
+     <path d="M676 370 Q700 363 725 370 L722 403 Q700 416 678 403Z" fill="url(#waterGrad)" id="receiverWater"/>
+     <!-- Floating Essential Oil Layer (Top) -->
+     <path d="M676 370 Q700 363 725 370 L725 370 Q700 363 676 370 Z" fill="#ffd86b" id="oilLayerSvg" opacity=".95"/>
+     <path d="M676 370 Q700 363 725 370" stroke="#e0a328" stroke-width="2.5" id="oilStroke"/>
+     <path d="M688 294 V280 H712 V294" fill="url(#glassBody)" stroke="#3b697d" stroke-width="2"/>
+     <!-- Flask Glare -->
+     <path d="M680 330 L677 395" stroke="url(#glassReflection)" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <!-- Dynamic Moving Vapor Particles -->
+    <g id="vaporDots" opacity="0">
+      <circle cx="300" cy="156" r="5.5" fill="#f4bd42" id="dot1"><animate attributeName="cx" values="280;630" dur="2.8s" repeatCount="indefinite"/></circle>
+      <circle cx="300" cy="174" r="4.5" fill="#f4bd42" id="dot2"><animate attributeName="cx" values="280;630" dur="3.4s" repeatCount="indefinite"/></circle>
+      <circle cx="300" cy="192" r="5" fill="#f4bd42" id="dot3"><animate attributeName="cx" values="280;630" dur="4.0s" repeatCount="indefinite"/></circle>
+    </g>
+
+    <!-- Labels -->
+    <g font-family="Tahoma,sans-serif" font-size="15" font-weight="bold" fill="#1b4260">
+     <text x="38" y="28">1. หม้อต้มน้ำ (Boiling Flask)</text>
+     <text x="150" y="455">2. ขวดบรรจุวัตถุดิบ (Plant Flask)</text>
+     <text x="385" y="285">3. เครื่องควบแน่น (Liebig Condenser)</text>
+     <text x="640" y="455">4. ภาชนะรับสารกลั่น (Receiving Flask)</text>
+     <text x="545" y="278" fill="#156489" font-size="13">น้ำเย็นเข้า (IN)</text>
+     <text x="310" y="90" fill="#156489" font-size="13">น้ำอุ่นออก (OUT)</text>
+    </g>
+    <g font-family="Tahoma,sans-serif" font-size="12" fill="#755617">
+     <text x="25" y="480">เปลวไฟบุนเซน</text>
+     <text x="265" y="130">ไอน้ำ + สารระเหย</text>
+     <text x="640" y="250">หยดสารกลั่น</text>
+    </g>
+   </svg>
+  </div>
+
+  <!-- Status & Results Panel -->
+  <aside class="statuspanel">
+   <div>
+    <div class="stat"><div class="statlabel">อุณหภูมิในขวดกลั่น</div><div class="big"><span id="temp">25</span> °C</div></div>
+    <div class="stat"><div class="statlabel">ปริมาณน้ำมันหอมระเหยที่สกัดได้</div><div class="big"><span id="oilAmount">0.00</span> mL</div></div>
+    <div class="stat"><div class="statlabel">ปริมาณน้ำกลั่น (Hydrosol)</div><div class="big" style="color:#2878c8"><span id="waterAmount">0.0</span> mL</div></div>
+    <div class="stat"><div class="statlabel">สถานะระบบ</div><div id="state">รอเริ่มการจำลอง</div></div>
+   </div>
+
+   <div class="material-info" id="matDetail">
+    <b id="matTitle">🌿 ตะไคร้หอม (Citronella)</b>
+    <span id="matDesc">สารสำคัญหลัก: Citronellal ให้กลิ่นหอมสดชื่น ไล่ยุง ได้ปริมาณน้ำมันประมาณ 0.8% - 1.2% ของน้ำหนักพืช</span>
+   </div>
+
+   <p id="observation" style="margin-top:10px;">กดปุ่ม "เริ่มการจำลอง" เพื่อสังเกตการเกิดไอและการแยกชั้นของสารหอม</p>
+  </aside>
+ </div>
+
+ <p style="margin-top:20px;"><b>📈 กราฟแสดงอุณหภูมิและการกลั่นสะสมตามเวลา</b> <span class="smallnote">(ข้อมูลจำลองเพื่อการเรียนรู้)</span></p>
+ <canvas id="chart" width="900" height="230" aria-label="กราฟแสดงอุณหภูมิ"></canvas>
+ <div class="lab-controls-panel" style="margin-top:12px;padding:10px;">
+   <button class="secondary" id="analyze">💬 แนวทางวิเคราะห์การทดลอง</button>
+ </div>
+ <div id="analysis" class="callout blue" hidden>
+  <b>📌 ข้อสังเกตจากการทดลอง:</b><br>
+  1. เมื่อให้ความร้อน อุณหภูมิจะสูงขึ้นจนถึงจุดเดือดของน้ำ (ประมาณ 100°C) จากนั้นไอน้ำจะพาน้ำมันหอมระเหยออกมาด้วยกัน<br>
+  2. <b>ผลของปริมาณวัตถุดิบ:</b> ยิ่งใช้ปริมาณวัตถุดิบมาก ชั้นน้ำมันหอมระเหยในภาชนะรับจะมีความหนามากขึ้นตามสัดส่วน<br>
+  3. <b>ผลของชนิดวัตถุดิบ:</b> พืชต่างชนิดกัน มีปริมาณน้ำมันและสีของน้ำมันหอมระเหยที่ได้แตกต่างกันอย่างชัดเจน
+ </div>
+</section>
+
+<!-- Section 3: Process Diagram Cards -->
+<section>
+ <h2>🧭 เส้นทางของไอน้ำ 4 ขั้นตอน (Illustrated Steps)</h2>
+ <div class="process">
+  <!-- Step 1 -->
+  <article>
+   <div class="process-header"><span class="num">1</span><h3>เกิดไอน้ำ</h3></div>
+   <svg class="process-svg" viewBox="0 0 200 120">
+    <rect width="200" height="120" fill="#f0f7ff" rx="8"/>
+    <path d="M70 40 Q70 25 100 25 T130 40 L125 100 Q100 112 75 100Z" fill="#e1f3f9" stroke="#357895" stroke-width="3"/>
+    <path d="M76 75 Q100 70 124 75 L122 97 Q100 107 78 97Z" fill="#58c4e6"/>
+    <path d="M90 108 Q100 90 110 108 Q118 120 100 122Z" fill="#f49b33"/>
+    <!-- Steam Bubbles -->
+    <circle cx="90" cy="65" r="4" fill="#aee9f7"><animate attributeName="cy" values="70;45" dur="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="1.5s" repeatCount="indefinite"/></circle>
+    <circle cx="110" cy="60" r="5" fill="#aee9f7"><animate attributeName="cy" values="65;40" dur="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;0" dur="1.2s" repeatCount="indefinite"/></circle>
+    <path d="M95 30 Q100 15 95 5" fill="none" stroke="#8fd8ed" stroke-width="3" stroke-dasharray="4 3"/>
+    <path d="M105 30 Q110 15 105 5" fill="none" stroke="#8fd8ed" stroke-width="3" stroke-dasharray="4 3"/>
+   </svg>
+   <p>ให้ความร้อนแก่น้ำในหม้อต้มจนเดือด น้ำเปลี่ยนสถานะกลายเป็นไอน้ำร้อนที่มีความดันดันไปตามท่อ</p>
+  </article>
+
+  <!-- Step 2 -->
+  <article>
+   <div class="process-header"><span class="num">2</span><h3>พาสารหอม</h3></div>
+   <svg class="process-svg" viewBox="0 0 200 120">
+    <rect width="200" height="120" fill="#f0fbf7" rx="8"/>
+    <path d="M70 30 H130 V100 H70 Z" fill="#e8f7f1" stroke="#2b8264" stroke-width="3" rx="10"/>
+    <!-- Leaves inside -->
+    <path d="M85 70 Q75 50 95 45 Q110 55 90 75Z" fill="#41b384"/>
+    <path d="M115 85 Q105 65 125 60 Q135 75 115 90Z" fill="#2d966b"/>
+    <!-- Rising mixture vapor -->
+    <path d="M85 95 V20" stroke="#85d1b3" stroke-width="3" stroke-dasharray="5 4"/>
+    <path d="M115 95 V20" stroke="#f0be54" stroke-width="3" stroke-dasharray="5 4"/>
+    <circle cx="100" cy="40" r="5" fill="#f4c242"><animate attributeName="cy" values="60;20" dur="1.6s" repeatCount="indefinite"/></circle>
+   </svg>
+   <p>ไอน้ำพุ่งผ่านวัตถุดิบพืช ความร้อนทำให้ต่อมน้ำมันแตกออก ไอน้ำจะพาสารหอมที่ระเหยง่ายออกมาพร้อมกัน</p>
+  </article>
+
+  <!-- Step 3 -->
+  <article>
+   <div class="process-header"><span class="num">3</span><h3>ทำให้เย็น</h3></div>
+   <svg class="process-svg" viewBox="0 0 200 120">
+    <rect width="200" height="120" fill="#fffcf5" rx="8"/>
+    <!-- Condenser Tube -->
+    <rect x="30" y="40" width="140" height="40" rx="20" fill="#d8f3fd" stroke="#3b88a5" stroke-width="3"/>
+    <line x1="20" y1="60" x2="180" y2="60" stroke="#e0a638" stroke-width="5" stroke-dasharray="8 6"/>
+    <!-- Cold water arrows -->
+    <path d="M140 100 V75" stroke="#288ec7" stroke-width="4" marker-end="url(#arrow)"/>
+    <path d="M60 35 V10" stroke="#288ec7" stroke-width="4"/>
+    <!-- Cold snowflakes/drops -->
+    <circle cx="100" cy="50" r="3" fill="#3caed8"/>
+    <circle cx="120" cy="70" r="3" fill="#3caed8"/>
+    <text x="65" y="105" font-size="11" fill="#1e73a0" font-weight="bold">น้ำเย็นช่วยลดอุณหภูมิ</text>
+   </svg>
+   <p>ไอผสมเคลื่อนผ่านเครื่องควบแน่นที่มีน้ำเย็นหล่อเย็น ดึงความร้อนออก ทำให้ไอควบแน่นกลับเป็นของเหลว</p>
+  </article>
+
+  <!-- Step 4 -->
+  <article>
+   <div class="process-header"><span class="num">4</span><h3>เก็บสารกลั่น</h3></div>
+   <svg class="process-svg" viewBox="0 0 200 120">
+    <rect width="200" height="120" fill="#fff5f8" rx="8"/>
+    <!-- Flask -->
+    <path d="M75 30 H125 L140 95 Q145 108 100 108 Q55 108 60 95Z" fill="#fff" stroke="#4a7691" stroke-width="3"/>
+    <!-- Water layer -->
+    <path d="M63 90 Q100 83 137 90 L139 96 Q100 106 61 96Z" fill="#50c4e9"/>
+    <!-- Oil layer (Float top) -->
+    <path d="M67 76 Q100 70 133 76 L136 89 Q100 83 64 89Z" fill="#f5c242"/>
+    <text x="75" y="70" font-size="11" fill="#a0720c" font-weight="bold">ชั้นน้ำมัน (ลอยบน)</text>
+    <text x="78" y="102" font-size="10" fill="#0c6285">ชั้นน้ำกลั่น (ล่าง)</text>
+   </svg>
+   <p>ของเหลวไหลลงภาชนะรับ สารจะแยกเป็น 2 ชั้น โดยน้ำมันหอมระเหยที่ไม่ละลายน้ำจะลอยอยู่บนชั้นน้ำ</p>
+  </article>
+ </div>
+
+ <div class="callout"><b>ข้อควรระวังในห้องปฏิบัติการจริง:</b> การทดลองต้องทำภายใต้การดูแลของครูผู้สอน ตรวจสอบทางน้ำหล่อเย็นเข้า-ออกให้ถูกต้อง และห้ามปิดกั้นระบบระบายไอเพื่อป้องกันความดันสูงเกินไป</div>
+</section>
+
+<!-- Section 4: Game & Wordbank -->
+<section>
+ <div class="gamehead">
+  <h2>🎮 เกมภารกิจจับคู่: เติมศัพท์นักสืบกลิ่นหอม</h2>
+  <span class="scorebadge">คะแนน: <span id="currentScore">0</span> / 8</span>
+ </div>
+ <p>ลากคำศัพท์จากคลังคำด้านล่าง ไปวางในช่องว่างให้ตรงกับความหมาย (บนมือถือสามารถแตะคำศัพท์แล้วแตะช่องว่างเพื่อเติมได้)</p>
+ 
+ <div class="instructions">
+  ⭐ <b>คำแนะนำ:</b> ระบบจะสุ่มคำถาม 8 ข้อจากคลังคำศัพท์ขนาดใหญ่ พร้อมคำศัพท์หลอก ลองทดสอบความรู้เพื่อสะสมคะแนนเต็ม 8!
+ </div>
+
+ <div class="wordbank-wrap">
+  <span class="wordbank-label">📦 คลังคำศัพท์ (สุ่มตัวเลือก):</span>
+  <div id="wordbank" class="wordbank" aria-label="คลังคำศัพท์สำหรับลาก"></div>
+ </div>
+
+ <div id="matchlist" class="matchlist"></div>
+
+ <div class="game-actions">
+  <button id="check">ตรวจคำตอบ ✓</button>
+  <button class="secondary" id="showAnswers">ดูเฉลย</button>
+  <button class="secondary" id="retry">🔄 สุ่มชุดคำถามใหม่</button>
+ </div>
+ <div id="score" class="feedback" aria-live="polite"></div>
+ <div id="answers" class="answerbox" hidden></div>
+</section>
+
+<section>
+ <h2>🤔 คำถามทบทวนความเข้าใจหลังเรียน</h2>
+ <ol class="reflection">
+  <li>เหตุใดจึงไม่ควรใช้ความร้อนต้มพืชโดยตรง แต่ใช้ "ไอน้ำ" ในการสกัดน้ำมันหอมระเหย?</li>
+  <li>เพราะเหตุใดน้ำมันหอมระเหยที่ได้จึงลอยอยู่เหนือชั้นน้ำในภาชนะรับสารกลั่น?</li>
+  <li>หากเราเพิ่มปริมาณวัตถุดิบพืชเป็น 2 เท่า ปริมาณน้ำมันหอมระเหยที่สกัดได้จะเปลี่ยนแปลงอย่างไร?</li>
+ </ol>
+ <div class="callout blue"><b>สรุปความรู้:</b> การกลั่นด้วยไอน้ำช่วยสกัดสารที่ระเหยง่ายและไม่ละลายน้ำจากพืช โดยอาศัยไอน้ำเป็นตัวนำพา และใช้เครื่องควบแน่นดึงความร้อนเพื่อให้ได้สารกลั่นที่แยกชั้นระหว่างน้ำมันหอมระเหยกับน้ำ</div>
+</section>
+</main>
+
+<footer>สื่อการเรียนรู้วิทยาศาสตร์ ม.2 · ห้องทดลองเสมือนเรื่องการกลั่นด้วยไอน้ำ (Steam Distillation)</footer>
+
+<script>
+// Extended Material Database (100 Plant & Essential Oil Solutes)
+const MATERIALS = {
+ citronella: { title: '🌿 ตะไคร้หอม (Citronella Grass)', desc: 'สารสำคัญ: Citronellal ให้กลิ่นหอมสดชื่น ไล่ยุง อัตราการสกัดน้ำมันประมาณ 1.0%', color: '#ffd86b', stroke: '#e0a328', plantColor: '#b7e7d0', yieldRate: 0.010 },
+ lemongrass: { title: '🌿 ตะไคร้บ้าน (Lemongrass)', desc: 'สารสำคัญ: Citral กลิ่นมะนาวสมุนไพร ช่วยผ่อนคลาย สกัดน้ำมันได้ 0.8%', color: '#e3f26d', stroke: '#b2c427', plantColor: '#c5e89e', yieldRate: 0.008 },
+ ginger: { title: '🫚 ขิง (Ginger Root)', desc: 'สารสำคัญ: Zingiberene ให้กลิ่นเผ็ดร้อน อบอุ่น สกัดน้ำมันได้ประมาณ 1.5%', color: '#f5c56b', stroke: '#c99638', plantColor: '#e3c68f', yieldRate: 0.015 },
+ galangal: { title: '🫚 ข่า (Galangal Rhizome)', desc: 'สารสำคัญ: 1,8-Cineole ให้กลิ่นหอมซ่า ต้านเชื้อแบคทีเรีย สกัดน้ำมันได้ 0.9%', color: '#f0d39e', stroke: '#b8985c', plantColor: '#ebd5b2', yieldRate: 0.009 },
+ turmeric: { title: '🫚 ขมิ้นชัน (Turmeric Rhizome)', desc: 'สารสำคัญ: Turmerone สีเหลืองทอง ต้านอนุมูลอิสระ สกัดน้ำมันได้ 2.5%', color: '#ff9e1b', stroke: '#c46f00', plantColor: '#f7b454', yieldRate: 0.025 },
+ fingerroot: { title: '🫚 กระชาย (Fingerroot)', desc: 'สารสำคัญ: Boesenbergin ให้กลิ่นหอมซ่าเฉพาะตัว สกัดน้ำมันได้ 0.7%', color: '#e6c88e', stroke: '#aa8b4f', plantColor: '#edd8b1', yieldRate: 0.007 },
+ cardamom: { title: '🫘 กระวาน (Cardamom Seed)', desc: 'สารสำคัญ: Terpinyl acetate ให้กลิ่นหอมเผ็ดหวาน สกัดน้ำมันได้สูงถึง 4.0%', color: '#e0cf8b', stroke: '#a89854', plantColor: '#bfae6b', yieldRate: 0.040 },
+ clove: { title: '🫘 กานพลู (Clove Bud)', desc: 'สารสำคัญ: Eugenol กลิ่นหอมลึก ช่วยแก้ปวดฟัน สกัดน้ำมันได้สูงถึง 15.0%', color: '#854b27', stroke: '#572e14', plantColor: '#704225', yieldRate: 0.150 },
+ nutmeg: { title: '🌰 จันทน์เทศ (Nutmeg Seed)', desc: 'สารสำคัญ: Sabinene ให้กลิ่นหอมอบอุ่น ช่วยผ่อนคลาย สกัดน้ำมันได้ 6.5%', color: '#d9975b', stroke: '#9e622b', plantColor: '#c28751', yieldRate: 0.065 },
+ cinnamon: { title: '🪵 อบเชย (Cinnamon Bark)', desc: 'สารสำคัญ: Cinnamaldehyde ให้กลิ่นหวานเผ็ด อบอุ่น สกัดน้ำมันได้ 1.2%', color: '#b85d28', stroke: '#7d3811', plantColor: '#9c4d1e', yieldRate: 0.012 },
+ black_pepper: { title: '🫘 พริกไทยดำ (Black Pepper)', desc: 'สารสำคัญ: Piperine & Caryophyllene ให้กลิ่นเผ็ดฉุน สกัดน้ำมันได้ 2.0%', color: '#6e5e55', stroke: '#40352f', plantColor: '#574a43', yieldRate: 0.020 },
+ coriander_seed: { title: '🌾 ลูกผักชี (Coriander Seed)', desc: 'สารสำคัญ: Linalool ให้กลิ่นหอมละมุน ช่วยย่อยอาหาร สกัดน้ำมันได้ 0.8%', color: '#d4b76e', stroke: '#997f3d', plantColor: '#c4aa64', yieldRate: 0.008 },
+ cumin: { title: '🌾 ยี่หร่า (Cumin Seed)', desc: 'สารสำคัญ: Cuminaldehyde ให้กลิ่นหอมฉุนเครื่องเทศ สกัดน้ำมันได้ 2.5%', color: '#bc9049', stroke: '#856127', plantColor: '#ab823f', yieldRate: 0.025 },
+ fennel: { title: '🌾 เทียนข้าวเปลือก (Fennel Seed)', desc: 'สารสำคัญ: Anethole ให้กลิ่นหวานคล้ายชะเอม สกัดน้ำมันได้ 3.0%', color: '#c7cf78', stroke: '#8e9640', plantColor: '#b4bd66', yieldRate: 0.030 },
+ anise: { title: '🌾 เทียนสัตตบุษย์ (Anise Seed)', desc: 'สารสำคัญ: trans-Anethole ให้กลิ่นหอมหวาน ชูกลิ่น สกัดน้ำมันได้ 2.2%', color: '#d4ca8c', stroke: '#999054', plantColor: '#c4ba7c', yieldRate: 0.022 },
+ star_anise: { title: '⭐ โป๊ยกั๊ก (Star Anise)', desc: 'สารสำคัญ: Anethole รูปดาวแปดแฉก กลิ่นหอมหวาน สกัดน้ำมันได้ 7.0%', color: '#a1562b', stroke: '#693213', plantColor: '#8a4823', yieldRate: 0.070 },
+ holy_basil: { title: '🌿 กระเพรา (Holy Basil)', desc: 'สารสำคัญ: Eugenol & Methyl eugenol ให้กลิ่นฉุนซ่า สกัดน้ำมันได้ 0.5%', color: '#5b8c46', stroke: '#3a5e2b', plantColor: '#639c4c', yieldRate: 0.005 },
+ sweet_basil: { title: '🌿 โหระพา (Sweet Basil)', desc: 'สารสำคัญ: Linalool & Estragole ให้กลิ่นหอมหวาน สกัดน้ำมันได้ 0.6%', color: '#68b347', stroke: '#42782b', plantColor: '#72c74e', yieldRate: 0.006 },
+ hairy_basil: { title: '🌿 แมงลัก (Hairy Basil)', desc: 'สารสำคัญ: Citral ให้กลิ่นหอมสดชื่นคล้ายมะนาว สกัดน้ำมันได้ 0.4%', color: '#88cf63', stroke: '#568c3b', plantColor: '#8fd968', yieldRate: 0.004 },
+ plai: { title: '🫚 ไพล (Plai Rhizome)', desc: 'สารสำคัญ: Sabinene & DMPBD แก้ปวดเมื่อย ต้านการอักเสบ สกัดน้ำมันได้ 0.9%', color: '#f7d054', stroke: '#bd9622', plantColor: '#e3bd42', yieldRate: 0.009 },
+
+ lavender: { title: '🪻 ดอกลาเวนเดอร์ (Lavender)', desc: 'สารสำคัญ: Linalool ผ่อนคลาย นอนหลับ สกัดน้ำมันได้ 1.4%', color: '#cbb0ff', stroke: '#8e63d8', plantColor: '#d6c8f5', yieldRate: 0.014 },
+ rose: { title: '🌹 กลีบกุหลาบ (Damask Rose)', desc: 'สารสำคัญ: Citronellol & Geraniol กลิ่นหอมโรแมนติก สกัดน้ำมันได้ 0.03%', color: '#ff9ebb', stroke: '#c74e72', plantColor: '#f7abc1', yieldRate: 0.0003 },
+ jasmine: { title: '🌼 ดอกมะลิ (Jasmine)', desc: 'สารสำคัญ: Benzyl acetate กลิ่นหอมเย็น ชื่นใจ สกัดน้ำมันได้ 0.08%', color: '#fff9d6', stroke: '#bfae50', plantColor: '#f0f5cf', yieldRate: 0.0008 },
+ ylang_ylang: { title: '🌺 ดอกกระดังงา (Ylang Ylang)', desc: 'สารสำคัญ: Germacrene D ให้กลิ่นหอมเย้ายวน สกัดน้ำมันได้ 2.0%', color: '#ffe66d', stroke: '#c4ac33', plantColor: '#fae682', yieldRate: 0.020 },
+ champaca: { title: '🌼 ดอกจำปา (Champaca)', desc: 'สารสำคัญ: Linalool & Isoeugenol กลิ่นหอมหวานตราตรึง สกัดน้ำมันได้ 0.2%', color: '#ffb954', stroke: '#c27f1f', plantColor: '#fcae3f', yieldRate: 0.002 },
+ white_champaca: { title: '🌼 ดอกจำปี (White Champaca)', desc: 'สารสำคัญ: Linalool กลิ่นหอมนวล ชวนหลงใหล สกัดน้ำมันได้ 0.15%', color: '#fffae8', stroke: '#bfa95c', plantColor: '#f7f2cf', yieldRate: 0.0015 },
+ ylang_ylang_thai: { title: '🌺 ดอกสายหยุด (Desmos Flower)', desc: 'สารสำคัญ: Terpineol กลิ่นหอมฟุ้งยามเช้า สกัดน้ำมันได้ 0.1%', color: '#eed76d', stroke: '#b09b3c', plantColor: '#e6d275', yieldRate: 0.001 },
+ night_jasmine: { title: '🌼 ดอกกรรณิการ์ (Night Jasmine)', desc: 'สารสำคัญ: Nyctanthine ให้กลิ่นหอมเย็นยามค่ำคืน สกัดน้ำมันได้ 0.05%', color: '#fff4cc', stroke: '#bdab66', plantColor: '#f7edd2', yieldRate: 0.0005 },
+ orange_blossom: { title: '🌸 ดอกส้ม (Neroli / Orange Blossom)', desc: 'สารสำคัญ: Linalool & Nerolidol หรูหรา ผ่อนคลาย สกัดน้ำมันได้ 0.1%', color: '#fff0bd', stroke: '#c4b172', plantColor: '#f5e9c4', yieldRate: 0.001 },
+ chamomile: { title: '🌼 ดอกคาโมมายล์ (Chamomile)', desc: 'สารสำคัญ: Chamazulene สีกรมท่า/ฟ้า ช่วยให้นอนหลับ สกัดน้ำมันได้ 0.5%', color: '#5ea2d6', stroke: '#2e6b9c', plantColor: '#e6f2fc', yieldRate: 0.005 },
+ clary_sage_flower: { title: '🪻 ดอกเคลรีเสจ (Clary Sage)', desc: 'สารสำคัญ: Linalyl acetate ปรับสมดุลอารมณ์ สกัดน้ำมันได้ 0.8%', color: '#b9a1e6', stroke: '#7d61b0', plantColor: '#cca6f2', yieldRate: 0.008 },
+ lotus: { title: '🪷 กลีบบัวหลวง (Nelumbo Lotus)', desc: 'สารสำคัญ: Nelumbine ให้กลิ่นหอมสงบ สง่างาม สกัดน้ำมันได้ 0.02%', color: '#ffc4db', stroke: '#c77d9b', plantColor: '#f2bdcf', yieldRate: 0.0002 },
+ millingtonia: { title: '🌼 ดอกปีบ (Cork Tree Flower)', desc: 'สารสำคัญ: Hortensin ให้กลิ่นหอมละมุนเย็น สกัดน้ำมันได้ 0.06%', color: '#fffdf0', stroke: '#c2be99', plantColor: '#f5f3e4', yieldRate: 0.0006 },
+ bullet_wood: { title: '🌼 ดอกพิกุล (Spanish Cherry)', desc: 'สารสำคัญ: Saponin ให้กลิ่นหอมแห้งทนนาน สกัดน้ำมันได้ 0.04%', color: '#f5dfab', stroke: '#b39c64', plantColor: '#ebd9af', yieldRate: 0.0004 },
+ screw_pine_flower: { title: '🌼 ดอกเตยหอม/ลำเจียก (Pandanus)', desc: 'สารสำคัญ: 2-Acetyl-1-pyrroline หอมนวลสไตล์ไทย สกัดน้ำมันได้ 0.05%', color: '#fff394', stroke: '#bfae3d', plantColor: '#f7ed9e', yieldRate: 0.0005 },
+ geranium_flower: { title: '🌺 ดอกเจอเรเนียม (Geranium Flower)', desc: 'สารสำคัญ: Geraniol & Citronellol ปรับสมดุลฮอร์โมน สกัดน้ำมันได้ 0.3%', color: '#ff789e', stroke: '#c43d63', plantColor: '#f587a6', yieldRate: 0.003 },
+ osmanthus: { title: '🌼 ดอกหอมหมื่นลี่ (Sweet Osmanthus)', desc: 'สารสำคัญ: Ionone กลิ่นหอมคล้ายพีชและแอปริคอต สกัดน้ำมันได้ 0.1%', color: '#ffc86b', stroke: '#c48927', plantColor: '#f7c46d', yieldRate: 0.001 },
+ frangipani: { title: '🌺 ดอกลีลาวดี (Frangipani)', desc: 'สารสำคัญ: Benzyl salicylate กลิ่นหอมสไตล์เขตร้อน สกัดน้ำมันได้ 0.05%', color: '#ffeea8', stroke: '#baa24d', plantColor: '#f7e7a3', yieldRate: 0.0005 },
+ tuberose: { title: '🌼 ดอกซ่อนกลิ่น (Tuberose)', desc: 'สารสำคัญ: Methyl anthranilate กลิ่นหอมเข้มข้น สกัดน้ำมันได้ 0.1%', color: '#fffcd4', stroke: '#c2bf8c', plantColor: '#f7f4d2', yieldRate: 0.001 },
+ gardenia: { title: '🌼 ดอกพุดซ้อน (Gardenia)', desc: 'สารสำคัญ: Linalool & Terpineol หอมสะอาด บริสุทธิ์ สกัดน้ำมันได้ 0.04%', color: '#fffae3', stroke: '#bfb78e', plantColor: '#f7f2d7', yieldRate: 0.0004 },
+
+ bergamot: { title: '🍋 ผิวมะกรูด (Kaffir Lime Peel)', desc: 'สารสำคัญ: Limonene ผ่อนคลาย สปา สกัดน้ำมันได้ 1.8%', color: '#ffbe3b', stroke: '#c98a10', plantColor: '#aee8b0', yieldRate: 0.018 },
+ lime: { title: '🍋 ผิวมะนาว (Lime Peel)', desc: 'สารสำคัญ: Limonene & Terpinene สดชื่น ตื่นตัว สกัดน้ำมันได้ 0.7%', color: '#cbe643', stroke: '#8cb314', plantColor: '#b1db48', yieldRate: 0.007 },
+ sweet_orange: { title: '🍊 ผิวส้มเกลี้ยง (Sweet Orange Peel)', desc: 'สารสำคัญ: d-Limonene อารมณ์ดี สดใส สกัดน้ำมันได้ 1.5%', color: '#ffa42b', stroke: '#c46900', plantColor: '#ffa83b', yieldRate: 0.015 },
+ mandarin: { title: '🍊 ผิวส้มเขียวหวาน (Mandarin Peel)', desc: 'สารสำคัญ: Limonene กลิ่นหอมหวานอ่อนโยน สกัดน้ำมันได้ 0.8%', color: '#ff912b', stroke: '#b85600', plantColor: '#ff9b3d', yieldRate: 0.008 },
+ lemon: { title: '🍋 ผิวมะนาวเหลือง (Lemon Peel)', desc: 'สารสำคัญ: Limonene & Pinene สะอาด สดชื่น สกัดน้ำมันได้ 1.2%', color: '#ffea42', stroke: '#c7b30c', plantColor: '#faea5c', yieldRate: 0.012 },
+ grapefruit: { title: '🍊 ผิวเกรปฟรุต (Grapefruit Peel)', desc: 'สารสำคัญ: Citrus paradisi oil สดชื่น ลดความเครียด สกัดน้ำมันได้ 1.0%', color: '#ff8a73', stroke: '#c4452d', plantColor: '#f78d79', yieldRate: 0.010 },
+ bitter_orange: { title: '🍊 ผิวส้มซ่า (Bitter Orange Peel)', desc: 'สารสำคัญ: Limonene ให้กลิ่นหอมเปรี้ยวขมซ่า สกัดน้ำมันได้ 1.4%', color: '#f58427', stroke: '#b55400', plantColor: '#f58a33', yieldRate: 0.014 },
+ pomelo: { title: '🍊 ผิวส้มโอ (Pomelo Peel)', desc: 'สารสำคัญ: Limonene กลิ่นหอมอ่อนๆ สดชื่น สกัดน้ำมันได้ 0.5%', color: '#e8ea74', stroke: '#a2a628', plantColor: '#dfeb6e', yieldRate: 0.005 },
+ yuzu: { title: '🍋 ผิวส้มยูสุ (Yuzu Peel)', desc: 'สารสำคัญ: Yuzunone & Limonene หอมละมุนพรีเมียม สกัดน้ำมันได้ 0.9%', color: '#ffd633', stroke: '#c49e00', plantColor: '#fad94b', yieldRate: 0.009 },
+ tangerine: { title: '🍊 ผิวส้มสายน้ำผึ้ง (Tangerine Peel)', desc: 'สารสำคัญ: Limonene ให้กลิ่นส้มหวานฉ่ำ สกัดน้ำมันได้ 0.8%', color: '#ff9933', stroke: '#b85c00', plantColor: '#ff9e3b', yieldRate: 0.008 },
+ kumquat: { title: '🍊 ผิวส้มกิ๊ด (Kumquat Peel)', desc: 'สารสำคัญ: Limonene กลิ่นส้มเปรี้ยวเล็กๆ สกัดน้ำมันได้ 0.6%', color: '#ffa826', stroke: '#bf7000', plantColor: '#ffa833', yieldRate: 0.006 },
+ citron: { title: '🍋 ผิวส้มมือ (Buddha\'s Hand Citron)', desc: 'สารสำคัญ: Limonene & Nerol กลิ่นหอมสดชื่นสูง สกัดน้ำมันได้ 1.1%', color: '#ffe436', stroke: '#bfa700', plantColor: '#fce647', yieldRate: 0.011 },
+ petitgrain: { title: '🍃 ใบส้มซ่า (Petitgrain Leaves)', desc: 'สารสำคัญ: Linalyl acetate & Linalool หอมเขียวสดชื่น สกัดน้ำมันได้ 0.5%', color: '#88bf43', stroke: '#57851e', plantColor: '#84bd3c', yieldRate: 0.005 },
+ kaffir_leaf: { title: '🍃 ใบลอยมะกรูด (Kaffir Lime Leaf)', desc: 'สารสำคัญ: Citronellal กลิ่นหอมอโรม่าไทย สกัดน้ำมันได้ 0.8%', color: '#4d9e38', stroke: '#2e6620', plantColor: '#4f9e3a', yieldRate: 0.008 },
+ calamansi: { title: '🍋 ส้มจี๊ด (Calamansi Peel)', desc: 'สารสำคัญ: Limonene เปรี้ยวสดชื่น มีชีวา สกัดน้ำมันได้ 0.7%', color: '#dedb37', stroke: '#9e9c13', plantColor: '#d6d438', yieldRate: 0.007 },
+
+ eucalyptus: { title: '🍃 ใบยูคาลิปตัส (Eucalyptus Leaf)', desc: 'สารสำคัญ: 1,8-Cineole หายใจโล่ง แก้คัดจมูก สกัดน้ำมันได้ 2.2%', color: '#e4f5aa', stroke: '#91b524', plantColor: '#9ed6bc', yieldRate: 0.022 },
+ peppermint: { title: '🍃 ใบเปปเปอร์มินต์ (Peppermint Leaf)', desc: 'สารสำคัญ: Menthol หอมเย็นซาบซ่า สดชื่น สกัดน้ำมันได้ 1.2%', color: '#7bf0c1', stroke: '#2cbd86', plantColor: '#80ebbf', yieldRate: 0.012 },
+ spearmint: { title: '🍃 ใบสเปียร์มินต์ (Spearmint Leaf)', desc: 'สารสำคัญ: Carvone หอมเย็นนุ่มนวล สกัดน้ำมันได้ 1.0%', color: '#97f0a8', stroke: '#47ba5c', plantColor: '#8de89e', yieldRate: 0.010 },
+ rosemary: { title: '🍃 ใบโรสแมรี่ (Rosemary Leaf)', desc: 'สารสำคัญ: 1,8-Cineole & Camphor กระตุ้นความจำ สกัดน้ำมันได้ 1.5%', color: '#a7d6a5', stroke: '#569453', plantColor: '#97cf95', yieldRate: 0.015 },
+ thyme: { title: '🍃 ใบไทม์ (Thyme Leaf)', desc: 'สารสำคัญ: Thymol ฆ่าเชื้อโรค ภูมิคุ้มกัน สกัดน้ำมันได้ 1.8%', color: '#90b886', stroke: '#517a47', plantColor: '#8fb886', yieldRate: 0.018 },
+ sage: { title: '🍃 ใบเซจ (Sage Leaf)', desc: 'สารสำคัญ: Thujone & Camphor กลิ่นหอมสมุนไพรเข้ม สกัดน้ำมันได้ 1.3%', color: '#9ab399', stroke: '#567055', plantColor: '#9bb89a', yieldRate: 0.013 },
+ oregano: { title: '🍃 ใบออริกาโน (Oregano Leaf)', desc: 'สารสำคัญ: Carvacrol ต้านแบคทีเรียทรงพลัง สกัดน้ำมันได้ 2.5%', color: '#87ad74', stroke: '#4c703b', plantColor: '#82ad6e', yieldRate: 0.025 },
+ tea_tree: { title: '🍃 ใบทีทรี (Tea Tree Leaf)', desc: 'สารสำคัญ: Terpinen-4-ol รักษาสิว ฆ่าเชื้อ สกัดน้ำมันได้ 1.8%', color: '#aed991', stroke: '#618c43', plantColor: '#aed991', yieldRate: 0.018 },
+ patchouli: { title: '🍃 ใบพิมเสน / แพตชูลี (Patchouli)', desc: 'สารสำคัญ: Patchoulol กลิ่นหอมดิน อบอุ่น สกัดน้ำมันได้ 2.8%', color: '#947253', stroke: '#5e432a', plantColor: '#856447', yieldRate: 0.028 },
+ pandan: { title: '🍃 ใบเตยหอม (Pandan Leaf)', desc: 'สารสำคัญ: 2-Acetyl-1-pyrroline หอมหวานสไตล์ขนมไทย สกัดน้ำมันได้ 0.1%', color: '#5eb350', stroke: '#35732b', plantColor: '#5ab34c', yieldRate: 0.001 },
+ lemon_balm: { title: '🍃 ใบเลมอนบาล์ม (Lemon Balm)', desc: 'สารสำคัญ: Citral & Geraniol ผ่อนคลาย คลายกังวล สกัดน้ำมันได้ 0.15%', color: '#cbe368', stroke: '#819923', plantColor: '#c0db56', yieldRate: 0.0015 },
+ lemon_verbena: { title: '🍃 ใบเลมอนเวอบีน่า (Lemon Verbena)', desc: 'สารสำคัญ: Citral กลิ่นสดชื่นทรงพลัง สกัดน้ำมันได้ 0.5%', color: '#d1eb59', stroke: '#8cb314', plantColor: '#c5e048', yieldRate: 0.005 },
+ marjoram: { title: '🍃 ใบมาร์จอแรม (Marjoram Leaf)', desc: 'สารสำคัญ: Terpinen-4-ol คลายกล้ามเนื้อ สกัดน้ำมันได้ 0.9%', color: '#96bd84', stroke: '#597d49', plantColor: '#8fc479', yieldRate: 0.009 },
+ wintergreen: { title: '🍃 ใบวินเทอร์กรีน (Wintergreen Leaf)', desc: 'สารสำคัญ: Methyl salicylate กลิ่นน้ำมันมวย แก้ปวด สกัดน้ำมันได้ 0.7%', color: '#d64949', stroke: '#8c1f1f', plantColor: '#529e5b', yieldRate: 0.007 },
+ bay_leaf: { title: '🍃 ใบกระวาน / เบย์ (Bay Laurel)', desc: 'สารสำคัญ: 1,8-Cineole หอมลึก ปรุงอาหาร สกัดน้ำมันได้ 1.1%', color: '#668a5c', stroke: '#3a5432', plantColor: '#5d8552', yieldRate: 0.011 },
+ citronella_leaf: { title: '🍃 ใบตะไคร้หอมสด (Citronella Leaf)', desc: 'สารสำคัญ: Citronellal กลิ่นสมุนไพรเข้ม สกัดน้ำมันได้ 0.7%', color: '#9ed683', stroke: '#5d9144', plantColor: '#9ed683', yieldRate: 0.007 },
+ cajuput: { title: '🍃 ใบเสม็ดขาว (Cajuput Leaf)', desc: 'สารสำคัญ: Cineole แก้หวัด คัดจมูก สกัดน้ำมันได้ 1.0%', color: '#b9db9a', stroke: '#6d8f50', plantColor: '#abd687', yieldRate: 0.010 },
+ niaouli: { title: '🍃 ใบเสม็ดแดง (Niaouli Leaf)', desc: 'สารสำคัญ: 1,8-Cineole ต้านเชื้อไวรัส สกัดน้ำมันได้ 1.2%', color: '#c3e09d', stroke: '#738f50', plantColor: '#b7db8a', yieldRate: 0.012 },
+ myrtle: { title: '🍃 ใบเมอร์เทิล (Myrtle Leaf)', desc: 'สารสำคัญ: α-Pinene & Cineole หอมสะอาด สกัดน้ำมันได้ 0.8%', color: '#92bd88', stroke: '#547d4c', plantColor: '#8ab880', yieldRate: 0.008 },
+ mugwort: { title: '🍃 ใบโกฐจุฬาลัมพา (Mugwort Leaf)', desc: 'สารสำคัญ: Thujone สมุนไพรไล่แมลง สกัดน้ำมันได้ 0.4%', color: '#7a9e72', stroke: '#46613f', plantColor: '#72966a', yieldRate: 0.004 },
+ savory: { title: '🍃 ใบซาวอรี่ (Savory Leaf)', desc: 'สารสำคัญ: Carvacrol เครื่องเทศเข้มข้น สกัดน้ำมันได้ 1.5%', color: '#86ab74', stroke: '#4f703e', plantColor: '#81ab6f', yieldRate: 0.015 },
+ tarragon: { title: '🍃 ใบทาร์รากอน (Tarragon Leaf)', desc: 'สารสำคัญ: Estragole กลิ่นเครื่องเทศฝรั่งเศส สกัดน้ำมันได้ 1.0%', color: '#8cc779', stroke: '#4b8239', plantColor: '#80c26b', yieldRate: 0.010 },
+ pine_needle: { title: '🌲 ใบสนเข็ม (Pine Needle)', desc: 'สารสำคัญ: α-Pinene หอมกลิ่นป่าเขา สกัดน้ำมันได้ 0.5%', color: '#55995b', stroke: '#2e5932', plantColor: '#539959', yieldRate: 0.005 },
+ fir_needle: { title: '🌲 ใบสนเฟอร์ (Fir Needle)', desc: 'สารสำคัญ: Bornyl acetate หอมสดชื่นฤดูหนาว สกัดน้ำมันได้ 0.6%', color: '#4a8a5e', stroke: '#235233', plantColor: '#438557', yieldRate: 0.006 },
+ spruce: { title: '🌲 ใบสนสปรูซ (Spruce Needle)', desc: 'สารสำคัญ: Bornyl acetate ผ่อนคลายจิตใจ สกัดน้ำมันได้ 0.5%', color: '#52946c', stroke: '#28593c', plantColor: '#4c9467', yieldRate: 0.005 },
+
+ sandalwood: { title: '🪵 ไม้จันทน์หอม (Sandalwood)', desc: 'สารสำคัญ: Santalol หอมสงบ สมาธิ สกัดน้ำมันได้ 4.5%', color: '#e3b174', stroke: '#9e6d33', plantColor: '#cc9756', yieldRate: 0.045 },
+ cedarwood: { title: '🪵 ไม้ซีดาร์ (Cedarwood)', desc: 'สารสำคัญ: Cedrol หอมอบอุ่น กลิ่นไม้ สกัดน้ำมันได้ 3.5%', color: '#c28546', stroke: '#784b1d', plantColor: '#ab7033', yieldRate: 0.035 },
+ agarwood: { title: '🪵 ไม้กฤษณา (Agarwood / Oud)', desc: 'สารสำคัญ: Agarospirol ไม้หอมราคาแพง ล้ำค่า สกัดน้ำมันได้ 1.2%', color: '#5c4128', stroke: '#362312', plantColor: '#4d341d', yieldRate: 0.012 },
+ rosewood: { title: '🪵 ไม้โรสวูด (Rosewood)', desc: 'สารสำคัญ: Linalool กลิ่นไม้อ่อนๆ ผสมกุหลาบ สกัดน้ำมันได้ 1.2%', color: '#b56750', stroke: '#753422', plantColor: '#9e523c', yieldRate: 0.012 },
+ frankincense: { title: '🪵 ยางกำยานบอสเวลเลีย (Frankincense)', desc: 'สารสำคัญ: α-Pinene ยางไม้ศักดิ์สิทธิ์ สกัดน้ำมันได้ 5.0%', color: '#f7d383', stroke: '#b38e3e', plantColor: '#e3be6d', yieldRate: 0.050 },
+ myrrh: { title: '🪵 ยางมดยอบ (Myrrh Resin)', desc: 'สารสำคัญ: Curzerene ยางไม้โบราณ สกัดน้ำมันได้ 4.0%', color: '#bf7039', stroke: '#7a3b11', plantColor: '#a65924', yieldRate: 0.040 },
+ vetiver: { title: '🌾 รากแฝกหอม (Vetiver Root)', desc: 'สารสำคัญ: Khusimol กลิ่นดินและรากไม้ สกัดน้ำมันได้ 2.0%', color: '#7a5a3a', stroke: '#47311d', plantColor: '#694a2c', yieldRate: 0.020 },
+ camphor: { title: '🪵 ไม้การบูร (Camphor Wood)', desc: 'สารสำคัญ: Camphor หอมเย็นโล่งจมูก สกัดน้ำมันได้ 2.5%', color: '#f0e6cf', stroke: '#a89c80', plantColor: '#ded2b6', yieldRate: 0.025 },
+ juniper_berry: { title: '🫐 ผลจูนิเปอร์ (Juniper Berry)', desc: 'สารสำคัญ: α-Pinene ล้างพิษ ปรับสมดุล สกัดน้ำมันได้ 1.5%', color: '#687799', stroke: '#394661', plantColor: '#556382', yieldRate: 0.015 },
+ cypress: { title: '🌲 ไม้ไซเปรส (Cypress Wood)', desc: 'สารสำคัญ: α-Pinene สดชื่น ปรับอารมณ์ สกัดน้ำมันได้ 1.3%', color: '#91b08d', stroke: '#547050', plantColor: '#7fa37b', yieldRate: 0.013 },
+ sassafras: { title: '🪵 เปลือกไม้ซาสซาแฟรส (Sassafras)', desc: 'สารสำคัญ: Safrole กลิ่นคล้ายรูทเบียร์ สกัดน้ำมันได้ 3.0%', color: '#ab613c', stroke: '#693114', plantColor: '#944f2b', yieldRate: 0.030 },
+ benzoin: { title: '🪵 ยางกำยานไทย (Benzoin Resin)', desc: 'สารสำคัญ: Benzoic acid กลิ่นหวานคล้ายวานิลลา สกัดน้ำมันได้ 4.5%', color: '#e6a15c', stroke: '#9c5b1c', plantColor: '#cf8944', yieldRate: 0.045 },
+ copal: { title: '🪵 ยางโคปอล (Copal Resin)', desc: 'สารสำคัญ: Copalic acid ยางไม้ใส สกัดน้ำมันได้ 3.2%', color: '#f2cc79', stroke: '#ab8737', plantColor: '#d9b362', yieldRate: 0.032 },
+ oakmoss: { title: '🌿 มอสต้นโอ๊ก (Oakmoss)', desc: 'สารสำคัญ: Atranol กลิ่นป่าดิบชื้น สกัดน้ำมันได้ 1.5%', color: '#697a59', stroke: '#3a472d', plantColor: '#586948', yieldRate: 0.015 },
+ valerian: { title: '🫚 รากวาเลอเรียน (Valerian Root)', desc: 'สารสำคัญ: Valerenic acid คลายเครียด หลับสนิท สกัดน้ำมันได้ 0.8%', color: '#8c6c51', stroke: '#4f3824', plantColor: '#75583f', yieldRate: 0.008 },
+ angelica: { title: '🫚 รากตังกุย (Angelica Root)', desc: 'สารสำคัญ: α-Pinene สมุนไพรบำรุง สกัดน้ำมันได้ 0.6%', color: '#b89d79', stroke: '#735b3c', plantColor: '#9e8462', yieldRate: 0.006 },
+ birch_tar: { title: '🪵 เปลือกไม้เบิร์ช (Birch Bark)', desc: 'สารสำคัญ: Methyl salicylate กลิ่นไม้ไหม้อบอุ่น สกัดน้ำมันได้ 0.5%', color: '#574236', stroke: '#30221a', plantColor: '#453227', yieldRate: 0.005 },
+ ho_wood: { title: '🪵 ไม้โฮวูด (Ho Wood)', desc: 'สารสำคัญ: Linalool สูงถึง 90% กลิ่นไม้หอมนวล สกัดน้ำมันได้ 2.8%', color: '#d1aa82', stroke: '#8c6741', plantColor: '#ba946c', yieldRate: 0.028 },
+ palo_santo: { title: '🪵 ไม้ปาโล ซานโต (Palo Santo)', desc: 'สารสำคัญ: Limonene ไม้มงคลหอมหวาน สกัดน้ำมันได้ 3.0%', color: '#ded1a2', stroke: '#94885c', plantColor: '#c4b889', yieldRate: 0.030 },
+ hinoki: { title: '🪵 สนฮิโนกิ (Hinoki Cypress)', desc: 'สารสำคัญ: Hinokitiol ไม้หอมญี่ปุ่น ผ่อนคลาย สกัดน้ำมันได้ 2.0%', color: '#ebd1ad', stroke: '#a38965', plantColor: '#d4ba94', yieldRate: 0.020 }
+};
+
+// Simulation State Variables
+let running = false;
+let tick = 0;
+let temp = 25;
+let waterAmount = 0;
+let oilAmount = 0;
+let timer = null;
+let data = [];
+
+// DOM Elements
+const materialSelect = document.getElementById('materialSelect');
+const massInput = document.getElementById('massInput');
+const massVal = document.getElementById('massVal');
+const heat = document.getElementById('heat');
+const heatVal = document.getElementById('heatVal');
+
+const tempEl = document.getElementById('temp');
+const oilAmountEl = document.getElementById('oilAmount');
+const waterAmountEl = document.getElementById('waterAmount');
+const stateEl = document.getElementById('state');
+const obs = document.getElementById('observation');
+
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
+
+// Material Selection Change Handler
+function updateMaterialUI() {
+ const matKey = materialSelect.value;
+ const mat = MATERIALS[matKey];
+ 
+ document.getElementById('matTitle').textContent = mat.title;
+ document.getElementById('matDesc').textContent = mat.desc;
+ document.getElementById('plantBed').setAttribute('fill', mat.plantColor);
+ document.getElementById('oilLayerSvg').setAttribute('fill', mat.color);
+ document.getElementById('oilStroke').setAttribute('stroke', mat.stroke);
+ document.getElementById('dot1').setAttribute('fill', mat.color);
+ document.getElementById('dot2').setAttribute('fill', mat.color);
+ document.getElementById('dot3').setAttribute('fill', mat.color);
+}
+
+materialSelect.addEventListener('change', () => {
+ updateMaterialUI();
+ if (!running) resetSim();
+});
+
+massInput.addEventListener('input', () => {
+ massVal.textContent = massInput.value;
+ // Adjust plant bed height visually
+ const massRatio = Number(massInput.value) / 300;
+ const topY = 350 - massRatio * 45;
+ document.getElementById('plantBed').setAttribute('d', `M171 ${topY} Q220 ${topY-12} 278 ${topY} L265 371 Q260 386 241 386 H205 Q188 386 183 371Z`);
+ if (!running) resetSim();
+});
+
+heat.addEventListener('input', () => {
+ heatVal.textContent = heat.value;
+});
+
+// Chart Drawing
+function drawChart() {
+ const w = canvas.width, h = canvas.height;
+ ctx.clearRect(0, 0, w, h);
+ 
+ // Grid & Labels
+ ctx.fillStyle = '#617b91';
+ ctx.font = '13px Tahoma';
+ ctx.fillText('อุณหภูมิ (°C)', 12, 18);
+ 
+ ctx.strokeStyle = '#e4edf3';
+ ctx.lineWidth = 1;
+ for(let i = 0; i <= 4; i++) {
+  let y = 30 + i * 40;
+  ctx.beginPath(); ctx.moveTo(55, y); ctx.lineTo(w - 20, y); ctx.stroke();
+  ctx.fillStyle = '#617b91';
+  ctx.fillText(String(120 - i * 25), 20, y + 4);
+ }
+ 
+ // Plot Temperature Curve
+ ctx.strokeStyle = '#2878c8';
+ ctx.lineWidth = 3.5;
+ ctx.beginPath();
+ data.forEach((v, i) => {
+  let x = 55 + i * (w - 80) / Math.max(60, data.length - 1);
+  let y = 190 - (v - 20) / 100 * 150;
+  i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+ });
+ ctx.stroke();
+ ctx.fillStyle = '#617b91';
+ ctx.fillText('เวลาการจำลอง →', w - 100, h - 8);
+}
+
+// Main Simulation Tick Update
+function updateSim() {
+ const power = Number(heat.value) / 100;
+ const mass = Number(massInput.value);
+ const mat = MATERIALS[materialSelect.value];
+
+ if (running) {
+  tick++;
+  // Temperature physics simulation
+  temp = Math.min(105, 25 + tick * (0.4 + power * 1.3));
+  
+  // Distillation occurs when temperature is near boiling point (> 85°C)
+  if (temp > 85 && power > 0.05) {
+   const rate = power * 0.35;
+   waterAmount = Math.min(180, waterAmount + rate * 1.5);
+   
+   // Oil yield calculated based on material rate & plant mass
+   const maxOil = mass * mat.yieldRate;
+   oilAmount = Math.min(maxOil, oilAmount + rate * (mat.yieldRate * 0.45));
+  }
+
+  data.push(temp);
+  if (data.length > 65) data.shift();
+
+  // Update Status Text
+  if (temp < 85) {
+   stateEl.textContent = 'กำลังเพิ่มความร้อนน้ำ';
+   obs.textContent = 'น้ำในหม้อต้มกำลังได้รับความร้อน อุณหภูมิกำลังสูงขึ้นอย่างต่อเนื่อง';
+  } else if (power < 0.08) {
+   stateEl.textContent = 'ความร้อนต่ำเกินไป';
+   obs.textContent = 'ระดับความร้อนต่ำ การเกิดไอและการเดือดช้าลง';
+  } else {
+   stateEl.textContent = 'เกิดไอและกำลังควบแน่น';
+   obs.textContent = `ไอน้ำกำลังพาสารหอมออกจาก ${mat.name} เข้าสู่เครื่องควบแน่น และควบแน่นกลายเป็นของเหลว`;
+  }
+ }
+
+ tempEl.textContent = Math.round(temp);
+ oilAmountEl.textContent = oilAmount.toFixed(2);
+ waterAmountEl.textContent = waterAmount.toFixed(1);
+
+ // Visual updates for SVG
+ const isEvaporating = running && temp > 75 && Number(heat.value) > 5;
+ document.getElementById('vaporDots').setAttribute('opacity', isEvaporating ? 1 : 0);
+ document.getElementById('vapour').setAttribute('stroke-dashoffset', String(-tick * 4));
+
+ // Receiver flask liquids height calculation
+ const totalVolumeHeight = Math.min(75, (waterAmount + oilAmount * 5) * 0.38);
+ const oilThickness = Math.min(22, oilAmount * 6.5);
+ 
+ const waterTopY = 370 - totalVolumeHeight;
+ const oilTopY = waterTopY - oilThickness;
+
+ document.getElementById('receiverWater').setAttribute('d', 
+  `M676 ${waterTopY} Q700 ${waterTopY-6} 725 ${waterTopY} L722 403 Q700 416 678 403Z`
+ );
+ 
+ if (oilAmount > 0.01) {
+  document.getElementById('oilLayerSvg').setAttribute('d', 
+   `M676 ${oilTopY} Q700 ${oilTopY-6} 725 ${oilTopY} L725 ${waterTopY} Q700 ${waterTopY-6} 676 ${waterTopY} Z`
+  );
+ } else {
+  document.getElementById('oilLayerSvg').setAttribute('d', `M676 370 Z`);
+ }
+
+ drawChart();
+}
+
+function resetSim() {
+ running = false;
+ clearInterval(timer);
+ tick = 0; temp = 25; waterAmount = 0; oilAmount = 0; data = [];
+ document.getElementById('toggle').textContent = '▶ เริ่มการจำลอง';
+ stateEl.textContent = 'รอเริ่มการจำลอง';
+ obs.textContent = 'เลือกชนิดพืช ปริมาณวัตถุดิบ แล้วกดเริ่มเพื่อจำลองการกลั่น';
+ updateSim();
+}
+
+document.getElementById('toggle').onclick = () => {
+ running = !running;
+ document.getElementById('toggle').textContent = running ? 'Ⅱ หยุดชั่วคราว' : '▶ เริ่มการจำลอง';
+ if (running) {
+  stateEl.textContent = 'กำลังจำลอง';
+  timer = setInterval(updateSim, 400);
+ } else {
+  clearInterval(timer);
+  stateEl.textContent = 'หยุดชั่วคราว';
+ }
+};
+
+document.getElementById('reset').onclick = resetSim;
+document.getElementById('analyze').onclick = () => {
+ const el = document.getElementById('analysis');
+ el.hidden = !el.hidden;
+};
+
+// Initial Setup
+updateMaterialUI();
+updateSim();
+
+// ==========================================
+// LARGE VOCABULARY GAME LOGIC (8/12 Randomized)
+// ==========================================
+const LARGE_VOCAB_BANK = [
+ { term: 'ไอน้ำ (Steam)', desc: 'ตัวนำพาสารที่ระเหยง่ายออกจากวัตถุดิบพืช' },
+ { term: 'เครื่องควบแน่น (Condenser)', desc: 'อุปกรณ์ทำให้อุณหภูมิของไอเย็นลงและเปลี่ยนสถานะเป็นของเหลว' },
+ { term: 'การระเหย (Evaporation)', desc: 'การเปลี่ยนสถานะของสารจากของเหลวกลายเป็นแก๊ส' },
+ { term: 'การควบแน่น (Condensation)', desc: 'การเปลี่ยนสถานะของแก๊สกลับกลายเป็นของเหลวเมื่อสูญเสียความร้อน' },
+ { term: 'สารกลั่น (Distillate)', desc: 'ของเหลวที่เก็บได้หลังจากการกลั่นและควบแน่น' },
+ { term: 'น้ำมันหอมระเหย (Essential Oil)', desc: 'สารระเหยง่าย ไม่ละลายน้ำ ลอยอยู่ชั้นบนของภาชนะรับ' },
+ { term: 'น้ำกลั่นเกสร (Hydrosol)', desc: 'น้ำส่วนล่างในภาชนะรับที่มีกลิ่นหอมเจือจาง' },
+ { term: 'ความหนาแน่น (Density)', desc: 'สมบัติที่ทำให้สารแยกชั้นกัน (น้ำมันหนาแน่นน้อยกว่าน้ำ)' },
+ { term: 'การแยกสาร (Separation)', desc: 'การทำให้สารผสมบริสุทธิ์ขึ้นโดยอาศัยสมบัติกายภาพต่างกัน' },
+ { term: 'หม้อต้มน้ำ (Steam Generator)', desc: 'อุปกรณ์สำหรับต้มน้ำให้เกิดไอน้ำและความดัน' },
+ { term: 'ตัวละลาย (Solute)', desc: 'องค์ประกอบพืชหรือสารหอมที่ถูกสกัดออกมาด้วยไอน้ำ' },
+ { term: 'จุดเดือด (Boiling Point)', desc: 'อุณหภูมิที่สารเปลี่ยนสถานะจากของเหลวเป็นไออย่างรวดเร็ว' }
+];
+
+// Distractor words (Vocab choices that don't match selected 8 questions)
+const EXTRA_DISTRACTORS = ['การกรอง (Filtration)', 'การตกตะกอน', 'การระเหิด (Sublimation)'];
+
+let currentGamePairs = [];
+let selectedChip = null;
+
+function shuffle(arr) {
+ let b = [...arr];
+ for (let i = b.length - 1; i > 0; i--) {
+  let j = Math.floor(Math.random() * (i + 1));
+  [b[i], b[j]] = [b[j], b[i]];
+ }
+ return b;
+}
+
+function placeWord(word, zone) {
+ if (!zone || !zone.classList.contains('dropzone')) return;
+ const previous = zone.dataset.word;
+ if (previous) {
+  const old = document.querySelector(`.draggable[data-word="${previous}"]`);
+  if (old) old.classList.remove('used');
+ }
+ const chip = document.querySelector(`.draggable[data-word="${word}"]`);
+ if (!chip || chip.classList.contains('used')) return;
+ 
+ zone.dataset.word = word;
+ zone.textContent = word;
+ zone.classList.add('filled');
+ zone.classList.remove('correct', 'wrong');
+ chip.classList.add('used');
+ selectedChip = null;
+ document.querySelectorAll('.draggable').forEach(x => x.style.outline = '');
+ document.getElementById('score').textContent = '';
+ document.getElementById('answers').hidden = true;
+}
+
+function buildGame() {
+ selectedChip = null;
+ const bankContainer = document.getElementById('wordbank');
+ const listContainer = document.getElementById('matchlist');
+ bankContainer.innerHTML = '';
+ listContainer.innerHTML = '';
+
+ // Pick 8 random pairs from 12 large vocabulary items
+ currentGamePairs = shuffle(LARGE_VOCAB_BANK).slice(0, 8);
+ 
+ // Create all draggable options (Correct 8 terms + 2 extra distractors)
+ const allTerms = shuffle([
+  ...currentGamePairs.map(p => p.term),
+  ...shuffle(EXTRA_DISTRACTORS).slice(0, 2)
+ ]);
+
+ allTerms.forEach(term => {
+  const chip = document.createElement('button');
+  chip.type = 'button';
+  chip.className = 'draggable';
+  chip.draggable = true;
+  chip.textContent = term;
+  chip.dataset.word = term;
+
+  chip.addEventListener('dragstart', e => {
+   e.dataTransfer.setData('text/plain', term);
+  });
+
+  chip.addEventListener('click', () => {
+   selectedChip = term;
+   document.querySelectorAll('.draggable').forEach(x => {
+    x.style.outline = x === chip ? '3px solid #ffc95b' : '';
+   });
+  });
+
+  bankContainer.appendChild(chip);
+ });
+
+ // Render Questions
+ currentGamePairs.forEach((pair, index) => {
+  const row = document.createElement('div');
+  row.className = 'matchitem';
+
+  const descText = document.createElement('p');
+  descText.innerHTML = `<b>${index + 1}.</b> ${pair.desc}`;
+
+  const zone = document.createElement('div');
+  zone.className = 'dropzone';
+  zone.tabIndex = 0;
+  zone.textContent = 'ลาก หรือ แตะคำตอบวางที่นี่';
+  zone.dataset.answer = pair.term;
+
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+  zone.addEventListener('drop', e => {
+   e.preventDefault();
+   zone.classList.remove('over');
+   placeWord(e.dataTransfer.getData('text/plain'), zone);
+  });
+
+  zone.addEventListener('click', () => {
+   if (selectedChip) placeWord(selectedChip, zone);
+  });
+
+  zone.addEventListener('keydown', e => {
+   if ((e.key === 'Enter' || e.key === ' ') && selectedChip) {
+    e.preventDefault();
+    placeWord(selectedChip, zone);
+   }
+  });
+
+  row.append(descText, zone);
+  listContainer.appendChild(row);
+ });
+
+ document.getElementById('currentScore').textContent = '0';
+ document.getElementById('score').textContent = '';
+ document.getElementById('answers').hidden = true;
+}
+
+// Game Action Buttons
+document.getElementById('check').onclick = () => {
+ const zones = [...document.querySelectorAll('.dropzone')];
+ let score = 0, filled = 0;
+
+ zones.forEach(z => {
+  z.classList.remove('correct', 'wrong');
+  if (z.dataset.word) {
+   filled++;
+   if (z.dataset.word === z.dataset.answer) {
+    score++;
+    z.classList.add('correct');
+   } else {
+    z.classList.add('wrong');
+   }
+  }
+ });
+
+ document.getElementById('currentScore').textContent = score;
+ const out = document.getElementById('score');
+ 
+ if (filled < zones.length) {
+  out.className = 'feedback bad';
+  out.textContent = `เติมคำตอบไปแล้ว ${filled}/${zones.length} ข้อ — โปรดเติมให้ครบทุกช่องก่อนตรวจนะ`;
+ } else {
+  out.className = 'feedback ' + (score === zones.length ? 'good' : 'bad');
+  out.textContent = score === zones.length 
+   ? `🎉 เก่งมาก! ได้คะแนนเต็ม ${score}/${zones.length} คุณคือผู้เชี่ยวชาญการกลั่นด้วยไอน้ำ!` 
+   : `⭐ ได้ ${score}/${zones.length} คะแนน — ลองตรวจช่องกรอบสีแดงแล้วกดปรับแก้ไขได้เลย!`;
+ }
+};
+
+document.getElementById('showAnswers').onclick = () => {
+ const box = document.getElementById('answers');
+ box.innerHTML = '<b>เฉลยคำตอบประจำรอบนี้:</b><ol style="margin:6px 0;padding-left:20px;">' + 
+  currentGamePairs.map(p => `<li><b>${p.term}</b> — ${p.desc}</li>`).join('') + 
+  '</ol>';
+ box.hidden = false;
+};
+
+document.getElementById('retry').onclick = buildGame;
+
+// Build Game on Init
+buildGame();
+</script>
